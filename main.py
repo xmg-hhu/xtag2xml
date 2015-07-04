@@ -3,7 +3,7 @@
 # A tool to convert XTAG grammar rules stored in the obsolete .trees format to #
 # JSON and XML files. Developed as part of the CRC991 (Section A2) at Heinrich #
 # Heine University Dusseldorf under supervision of Prof. Laura Kallmeyer.      #
-# For more information, see http://www.sfb991.uni-duesseldorf.de/en/           #
+# For more information, visit http://www.sfb991.uni-duesseldorf.de/en/         #
 #                                                                              #
 # Author: Esther Seyffarth (esther.seyffarth@hhu.de)                           #
 # Date: 04 July 2015                                                           #
