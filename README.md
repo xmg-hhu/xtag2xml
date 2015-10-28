@@ -1,5 +1,5 @@
 # XTAG to XML
-A tool to convert XTAG grammar rules stored in the obsolete .trees format to JSON and XML files. Developed as part of the CRC991 (Section A2) at Heinrich Heine University Dusseldorf under supervision of Prof. Laura Kallmeyer.
+A tool to convert XTAG grammar rules stored in the obsolete .trees format to JSON and XML files. Developed as part of the CRC991 (Project A02) at Heinrich Heine University Düsseldorf.
 For more information, visit http://www.sfb991.uni-duesseldorf.de/en/
 
 ## Info
