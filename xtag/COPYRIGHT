@@ -1,0 +1,46 @@
+******************************************************************
+The XTAG system and English Grammar
+Copyright (C) 1992-2001 University of Pennsylvania
+
+X-based Graphical Interface for Tree-Adjoining Grammmars.
+
+  It includes:
+	o a graphical editor for trees
+	o a parser for unification based tree-adjoining grammars
+	o utilities for defining grammars and lexicon for
+	  tree-adjoining grammars
+    o a wide-coverage grammar for English
+
+XTAG comes with ABSOLUTELY NO WARRANTY. This is free software.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2.0 or (at your option)
+any later version.
+
+A copy of the GPL is kept in the file COPYING in this directory.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+If you have comments or questions, contact us at by email at
+xtag-bugs@linc.cis.upenn.edu, or by regular mail at
+
+	  The Xtag Project
+	  Institute for Research in Cognitive Science
+	  University of Pennsylvania
+	  3401 Walnut St., Suite 400C
+	  Philadelphia, PA 19104-6228
+      USA
+
+SEND BUG REPORTS to xtag-bugs@linc.cis.upenn.edu
+
+DIRECTOR: Aravind K. Joshi  (joshi@linc.cis.upenn.edu)
+
+******************************************************************
