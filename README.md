@@ -8,3 +8,7 @@ Written in Python 3.4.
 How to use:
 - python main.py (to use default settings from config.ini)
 - python main.py [xtag-directory] [json-directory] [xml-directory] [toggle-single-file]    
+
+
+## TODO
+- [ ] include dtd
