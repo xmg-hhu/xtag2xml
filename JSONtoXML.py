@@ -85,8 +85,13 @@ def insert_feature_values(xmlnode, node_name, dict_tree_containing_node, used_va
                 # add value
                 feature_tag_value = ET.SubElement(feature_tag, "sym", {"value": value})
 
-    dtr_fcat = ET.SubElement(xmlnode, "f", {"name":"cat"})
-    dtr_sym = ET.SubElement(dtr_fcat, "sym", {"value":node_name.split("_")[0].lower()})
+    if node_name.islower():
+        dtr_fphon = ET.SubElement(xmlnode, "f", {"name":"phon"})
+        dtr_sym = ET.SubElement(dtr_fphon, "sym", {"value":node_name.split("_")[0].lower()})
+
+    else:
+        dtr_fcat = ET.SubElement(xmlnode, "f", {"name":"cat"})
+        dtr_sym = ET.SubElement(dtr_fcat, "sym", {"value":node_name.split("_")[0].lower()})
     return xmlnode, used_vars
 
 
@@ -99,7 +104,12 @@ def make_subtree(mother_node, dict_tree_containing_mother_node, used_vars):
     """
     for daughter_dict in findDaughters(dict_tree_containing_mother_node):
         node_attribs, daughter_name = utils.nodeNameToAttrDict(daughter_dict["name"])
-        node_attribs.update({"name":daughter_name})             # TODO
+
+        node_attribs.update({"name":daughter_name})
+
+        if daughter_name.islower():
+            node_attribs.update({"type": "flex"})
+
         dtr = ET.SubElement(mother_node, "node", node_attribs)
         dtr_narg = ET.SubElement(dtr, "narg")
         fs_coref = "@" + utils.numberToString(len(used_vars))
@@ -153,7 +163,7 @@ def makeXMLFile(currentTree, outpath):
         semantics = ET.SubElement(entry, "semantics")
         interface = ET.SubElement(entry, "interface")
         fs = ET.SubElement(interface, "fs")
-        print('<?xml version="1.0" encoding="utf-8"?>\n<!DOCTYPE grammar SYSTEM "xmg-tag.dtd,xml">', file=xmlfile)
+        print('<?xml version="1.0" encoding="utf-8" standalone="no" ?>\n<!DOCTYPE grammar SYSTEM "xmg-tag.dtd,xml">', file=xmlfile)
         output = ET.tostring(grammar)
         print(utils.prettifyXMLDocument(output).split(">", 1)[1].strip(), file=xmlfile)
         xmlfile.close()

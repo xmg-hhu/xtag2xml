@@ -30,15 +30,15 @@ def nodeNameToAttrDict(nodeName):
     """
     attributes = {}
     # set type attribute to default value (will be changed below if type
-    # information is given
+    # information is given)
     attributes["type"] = "std"
 
     node_name_re = re.compile("^([^#\+!%\$]+)")
     type_re = re.compile("#([^\+!%\$]+)")
-    connector_re = re.compile("\+([^!%\$]+)")
-    disp_feature_re = re.compile("!([^%\$]+)")
-    const_re = re.compile("%([^\$]+)")
-    const_type_re = re.compile("\$(.+)$")
+    connector_re = re.compile("\+([^#!%\$]+)")
+    disp_feature_re = re.compile("!([^#!%\$]+)")
+    const_re = re.compile("%([^#!%\$]+)")
+    const_type_re = re.compile("\$([^#!%\$]+)$")
 
     node_name_match = re.search(node_name_re, nodeName)
     type_match = re.search(type_re, nodeName)
@@ -68,6 +68,7 @@ def nodeNameToAttrDict(nodeName):
         attributes["constraints"] = const_match.group(1)
     if const_type_match:
         attributes["constraint-type"] = const_type_match.group(1)
+
     return attributes, cleaned_up_node_name
 
 def bracketToDict(bracket_string, node_feature_dict):
@@ -281,7 +282,7 @@ def collectXMLDocuments(xmlpath):
                     # each document contains exactly one entry
                     grammar.extend(root)
 
-    print('<?xml version="1.0" encoding="utf-8"?>\n<!DOCTYPE grammar SYSTEM "xmg-tag.dtd,xml">', file=grammarfile)
+    print('<?xml version="1.0" encoding="utf-8" standalone="no" ?>\n<!DOCTYPE grammar SYSTEM "xmg-tag.dtd,xml">', file=grammarfile)
     output = ET.tostring(grammar)
 
     print(prettifyXMLDocument(output).split(">", 1)[1].strip(), file=grammarfile)

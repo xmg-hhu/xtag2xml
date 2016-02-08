@@ -36,6 +36,8 @@ class grammarTree:
             topOrBottom = result[2]
             feature = result[3]
             featureValue = result[4]
+            if '"' in featureValue:
+                featureValue = featureValue.rsplit('"')[0]
             if not feature in nodes[nodeName][topOrBottom]:
                 nodes[nodeName][topOrBottom][feature] = featureValue
 
