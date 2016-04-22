@@ -58,25 +58,45 @@ class grammarTree:
                 node1 = {nodeName: {topOrBottom: feature}}
                 node2 = {relatedNodeName: {relatedNodeTopOrBottom: relatedNodeFeature}}
                 found = False
-                for reference in self.variables:
-                    newDict1 = self.variables[reference].copy()
-                    newDict2 = self.variables[reference].copy()
-                    newDict1.update(node1)
-                    newDict2.update(node2)
-                    if self.variables[reference] == newDict1:
-                        if not self.variables[reference] == newDict2:
-                            self.variables[reference].update(node2)
-                            found = True
-                    elif self.variables[reference] == newDict2:
-                        if not self.variables[reference] == newDict1:
-                            self.variables[reference].update(node1)
-                            found = True
-                if not found:
-                    addition = node1.copy()
-                    addition.update(node2)
-                    self.variables["@"+utils.numberToString(len(self.variables))] = addition
+
+                # check if current node info is already contained in one of the
+                # variable dictionaries in self.variables
+                featureAlreadyHasVariable = False
+                for existingVariable in self.variables:
+                    if nodeName in self.variables[existingVariable]:
+                        if topOrBottom in self.variables[existingVariable][nodeName]:
+                            if feature == self.variables[existingVariable][nodeName][topOrBottom]:
+                                self.variables[existingVariable].update(node2)
+                                featureAlreadyHasVariable = True
+                    if relatedNodeName in self.variables[existingVariable]:
+                        if relatedNodeTopOrBottom in self.variables[existingVariable][relatedNodeName]:
+                            if relatedNodeFeature == self.variables[existingVariable][relatedNodeName][relatedNodeTopOrBottom]:
+                                self.variables[existingVariable].update(node1)
+                                featureAlreadyHasVariable = True
+
+
+                if not featureAlreadyHasVariable:
+                    for reference in self.variables:
+                        newDict1 = self.variables[reference].copy()
+                        newDict2 = self.variables[reference].copy()
+                        newDict1.update(node1)
+                        newDict2.update(node2)
+                        if self.variables[reference] == newDict1:
+                            if not self.variables[reference] == newDict2:
+                                self.variables[reference].update(node2)
+                                found = True
+                        elif self.variables[reference] == newDict2:
+                            if not self.variables[reference] == newDict1:
+                                self.variables[reference].update(node1)
+                                found = True
+                    if not found:
+                        addition = node1.copy()
+                        addition.update(node2)
+                        self.variables["@"+utils.numberToString(len(self.variables))] = addition
+
 
         nodes = utils.mergeDicts(nodes, self.variables)
+
         return(nodes)
 
     def getHierarchy(self, definition):
