@@ -148,7 +148,7 @@ def bracketToDict(bracket_string, node_feature_dict):
     else:
         # first node definitely dominates everything that comes after
         root = re.findall(final_nodename, bracket_string)[0]
-        rest = re.sub(root, "", bracket_string)
+        rest = bracket_string.replace(root, "")
 
         # divide rest into list of siblings (daughters to root)
         children = identify_siblings(rest, final_nodename)
