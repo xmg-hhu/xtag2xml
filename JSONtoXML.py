@@ -113,6 +113,7 @@ def make_subtree(mother_node, dict_tree_containing_mother_node, used_vars):
         dtr = ET.SubElement(mother_node, "node", node_attribs)
         dtr_narg = ET.SubElement(dtr, "narg")
         fs_coref = "@" + utils.numberToString(len(used_vars))
+        used_vars.add(fs_coref)
         dtr_fs = ET.SubElement(dtr_narg, "fs", {"coref": fs_coref})
         dtr_fs, used_vars = insert_feature_values(dtr_fs, daughter_name, daughter_dict, used_vars)
         if findDaughters(daughter_dict) != []:
